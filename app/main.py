@@ -1,24 +1,28 @@
+import os
 import requests
+from routes import *
+from dotenv import load_dotenv
 
-def get_pokemon(name: str):
-    url = f"https://pokeapi.co/api/v2/pokemon/{name.lower()}"
-    response = requests.get(url)
+BASE_URL = os.getenv("BASE_URL")
 
-    if response.status_code != 200:
-        print(f"Error: Pokémon '{name}' not found.")
-        return None
+def main():
+    print("\n🌐 Testing FastAPI Endpoints...\n")
 
-    data = response.json()
-    return {
-        "name": data["name"],
-        "id": data["id"],
-        "height": data["height"],
-        "weight": data["weight"],
-        "types": [t["type"]["name"] for t in data["types"]],
-        "abilities": [a["ability"]["name"] for a in data["abilities"]],
-    }
+    # Root
+    r = requests.get(f"{BASE_URL}/")
+    print("Root:", r.json())
 
+    # Nodes
+    r = requests.get(f"{BASE_URL}/nodes?limit=5")
+    print("\nNodes:", r.json())
+
+    # Books
+    r = requests.get(f"{BASE_URL}/books")
+    print("\nBooks:", r.json())
+
+    # PokeAPI
+    r = requests.get(f"{BASE_URL}/pokemon/pikachu")
+    print("\nPikachu:", r.json())
 
 if __name__ == "__main__":
-    pokemon = get_pokemon("pikachu")
-    print(pokemon)
+    main()

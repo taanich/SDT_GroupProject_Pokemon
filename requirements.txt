@@ -1,2 +1,5 @@
 neo4j
 requests
+fastapi
+uvicorn
+python-dotenv

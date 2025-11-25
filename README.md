@@ -69,26 +69,71 @@ If pip is not recognised on your system, you can use the following instead:
 py -m pip install -r requirements.txt
 ```
 
+To deactivate the virtual environment, type:
+```
+deactivate
+```
+
 ---
 
-## ▶️ 5. Running the Application
+## 🔐 5. Storing Credentials in a `.env` File
 
-After setting up the virtual environment and installing all required packages, you can run the application.
+To keep your database credentials secure and avoid hardcoding passwords in your source code, this project uses a `.env` file.
 
- **1. Navigate into the `app` folder**
 
-In the terminal:
+Inside the project root, create a new file named:
+```
+.env
+```
 
-```bash
+
+Add the following variables (**do not use quotes**, and never commit real credentials):
+
+```
+BASE_URL=<your-URL>
+
+NEO4J_URI=neo4j+s://<your-host>.databases.neo4j.io
+NEO4J_USER=<your-username>
+NEO4J_PASSWORD=<your-password>
+```
+
+---
+
+## 🚀 6. Running the FastAPI Server
+
+Before accessing any API endpoints, the FastAPI application must be started.
+
+**1. Navigate into the `app` folder**
+```
 cd app
 ```
 
-**2. Run the Application**
+**2. Start FastAPI using Uvicorn**
+```
+uvicorn main:app --reload
+```
+
+FastAPI will now be available at:
+```
+http://127.0.0.1:8000
+```
+
+You can explore all endpoints via the automatically generated Swagger UI:
+```
+http://127.0.0.1:8000/docs
+```
+
+The file `routes.py` contains the API routes (e.g., Pokémon data, Neo4j services, etc.)
+
+---
+
+## ▶️ 7. Running the Application
+
+If you want to test your services directly in Python (without going through the browser), run:
 
 ```bash
 py main.py
 ```
-
 or, depending on your Python installation:
 
 ```bash
