@@ -1,28 +1,16 @@
-import os
-import requests
-from routes import *
 from dotenv import load_dotenv
+import os
+from fastapi import FastAPI
 
-BASE_URL = os.getenv("BASE_URL")
+# load env vars
+load_dotenv()
 
-def main():
-    print("\n🌐 Testing FastAPI Endpoints...\n")
+app = FastAPI(
+    title="Pokémon Multi-Model API",
+    description="Service Layer for Neo4j + PokeAPI + (future Oracle Spatial)",
+    version="1.0"
+)
 
-    # Root
-    r = requests.get(f"{BASE_URL}/")
-    print("Root:", r.json())
-
-    # Nodes
-    r = requests.get(f"{BASE_URL}/nodes?limit=5")
-    print("\nNodes:", r.json())
-
-    # Books
-    r = requests.get(f"{BASE_URL}/books")
-    print("\nBooks:", r.json())
-
-    # PokeAPI
-    r = requests.get(f"{BASE_URL}/pokemon/pikachu")
-    print("\nPikachu:", r.json())
-
-if __name__ == "__main__":
-    main()
+# Import router and include it
+from app.routes import router
+app.include_router(router)
