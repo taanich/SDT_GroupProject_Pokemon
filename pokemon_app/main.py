@@ -12,5 +12,5 @@ app = FastAPI(
 )
 
 # Import router and include it
-from app.routes import router
+from pokemon_app.routes import router
 app.include_router(router)

@@ -1,6 +1,6 @@
 from fastapi import APIRouter
-from app.services.graph_service import get_all_nodes, get_books
-from app.services.pokeapi_service import get_pokemon
+from pokemon_app.services.graph_service import get_all_nodes, get_books
+from pokemon_app.services.pokeapi_service import get_pokemon
 
 router = APIRouter()
 

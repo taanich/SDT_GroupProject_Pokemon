@@ -1,4 +1,4 @@
-from app.db.graph import run_query
+from pokemon_app.db.graph import run_query
 
 def get_all_nodes(limit: int = 10):
     cypher = """

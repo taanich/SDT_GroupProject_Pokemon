@@ -103,14 +103,14 @@ NEO4J_PASSWORD=<your-password>
 
 Before accessing any API endpoints, the FastAPI application must be started.
 
-**1. Navigate into the `app` folder**
+**1. Navigate into the `pokemon_app` folder**
 ```
-cd app
+cd pokemon_app
 ```
 
 **2. Start FastAPI using Uvicorn**
 ```
-uvicorn main:app --reload
+uvicorn pokemon_app.main:app --reload
 ```
 
 FastAPI will now be available at:
